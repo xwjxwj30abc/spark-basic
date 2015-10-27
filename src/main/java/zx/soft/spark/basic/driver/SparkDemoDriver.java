@@ -1,6 +1,7 @@
 package zx.soft.spark.basic.driver;
 
-import org.apache.hadoop.util.ProgramDriver;
+import zx.soft.spark.basic.sample.JavaWordCount;
+import zx.soft.utils.driver.ProgramDriver;
 
 public class SparkDemoDriver {
 
@@ -8,7 +9,7 @@ public class SparkDemoDriver {
 		int exitCode = -1;
 		ProgramDriver driver = new ProgramDriver();
 		try {
-			driver.addClass("word_count", zx.soft.spark.basic.sample.JavaWordCount.class, "单词计数");
+			driver.addClass("word_count", JavaWordCount.class, "单词计数");
 			driver.driver(args);
 			exitCode = 0;
 		} catch (Throwable e) {

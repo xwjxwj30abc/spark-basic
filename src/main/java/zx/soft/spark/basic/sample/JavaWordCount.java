@@ -12,15 +12,19 @@ import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFunction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import scala.Tuple2;
 
 public class JavaWordCount {
 
+	public static Logger logger = LoggerFactory.getLogger(JavaWordCount.class);
+
 	public static void main(String[] args) {
 
-		JavaSparkContext sc = new JavaSparkContext(new SparkConf().setAppName("Spark　Word Count").setMaster("local"));
-		final int threshold = Integer.parseInt(args[1]);
+		JavaSparkContext sc = new JavaSparkContext(new SparkConf().setAppName("Spark　Word Count"));
+		final int threshold = 2;
 
 		// split each document into words
 		JavaRDD<String> tokenized = sc.textFile(args[0]).flatMap(new FlatMapFunction<String, String>() {
@@ -76,7 +80,6 @@ public class JavaWordCount {
 						return i1 + i2;
 					}
 				});
-
 		System.out.println(charCounts.collect());
 
 	}
