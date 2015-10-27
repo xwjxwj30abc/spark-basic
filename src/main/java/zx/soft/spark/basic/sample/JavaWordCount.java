@@ -27,12 +27,13 @@ public class JavaWordCount {
 		final int threshold = 2;
 
 		// split each document into words
-		JavaRDD<String> tokenized = sc.textFile(args[0]).flatMap(new FlatMapFunction<String, String>() {
-			@Override
-			public Iterable<String> call(String s) {
-				return Arrays.asList(s.split(" "));
-			}
-		});
+		JavaRDD<String> tokenized = sc.textFile("hdfs://bigdata4:8020/user/spark/data.txt").flatMap(
+				new FlatMapFunction<String, String>() {
+					@Override
+					public Iterable<String> call(String s) {
+						return Arrays.asList(s.split(" "));
+					}
+				});
 
 		//count the occurrence of each word
 
