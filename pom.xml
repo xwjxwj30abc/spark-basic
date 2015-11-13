@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>spark-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-		<parent>
+	<parent>
 		<groupId>zx.soft</groupId>
 		<artifactId>common-parent</artifactId>
 		<version>1.0.0</version>
@@ -37,7 +37,14 @@
 			<artifactId>spark-streaming-flume_2.10</artifactId>
 			<version>1.2.0-cdh5.3.3</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-sql_2.10</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+
+
+
 		<!-- 日志组件 -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
@@ -75,7 +82,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
