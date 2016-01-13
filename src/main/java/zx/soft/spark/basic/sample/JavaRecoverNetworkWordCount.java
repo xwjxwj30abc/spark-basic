@@ -29,7 +29,7 @@ public class JavaRecoverNetworkWordCount {
 		//		if (outputFile.exists()) {
 		//			outputFile.delete();
 		//		}
-		SparkConf sparkConf = new SparkConf().setAppName("JavaRecoverNetworkWordCount");
+		SparkConf sparkConf = new SparkConf().setAppName("JavaRecoverNetworkWordCount").setMaster("local");
 		JavaStreamingContext ssc = new JavaStreamingContext(sparkConf, Durations.seconds(60));
 		ssc.checkpoint(checkpointDirectory);
 		JavaReceiverInputDStream<String> lines = ssc.socketTextStream(ip, port);
@@ -71,10 +71,10 @@ public class JavaRecoverNetworkWordCount {
 	}
 
 	public static void main(String[] args) {
-		final String ip = args[0];
-		final int port = Integer.parseInt(args[1]);
-		final String checkpointDirectory = args[2];
-		final String outputPath = args[3];
+		final String ip = "192.168.6.126";
+		final int port = 9999;
+		final String checkpointDirectory = "hdfs://archtorm:9000/user/donglei/spark/checkpintDirectory";
+		final String outputPath = "hdfs://archtorm:9000/user/donglei/spark/wordCount";
 		JavaStreamingContextFactory factory = new JavaStreamingContextFactory() {
 			@Override
 			public JavaStreamingContext create() {
